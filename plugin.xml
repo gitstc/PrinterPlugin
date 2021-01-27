@@ -1,0 +1,61 @@
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.tsu.PrinterPlugin"
+    version="0.4.1">
+
+    <name>PrinterPlugin</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PrinterPlugin">
+                <param name="ios-package" value="PrinterPlugin"/>
+            </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="UISupportedExternalAccessoryProtocols">
+            <array>
+                <string>com.bixolon.protocol</string>
+            </array>
+        </config-file>
+
+		<header-file src="src/ios/lib/Headers/BXPrinterController.h" />
+        <header-file src="src/ios/lib/Headers/BXBarcodeInfo.h" />
+        <header-file src="src/ios/lib/Headers/BXCode.h" />
+        <header-file src="src/ios/lib/Headers/BXPrinterControlDelegate.h" />
+        <header-file src="src/ios/lib/Headers/BXPrinterObjects.h" />
+        <header-file src="src/ios/lib/Headers/Common.h" />
+        <header-file src="src/ios/lib/Headers/Defines.h" />
+        <header-file src="src/ios/lib/Headers/iControllerDelegate.h" />
+        <header-file src="src/ios/lib/Headers/InterfaceFunctionsDelegate.h" />
+        <header-file src="src/ios/lib/Headers/NetFunctionsDelegate.h" />
+        <header-file src="src/ios/lib/Headers/UDPServerDelegate.h" />
+
+        <header-file src="src/ios/PrinterPlugin.h" />
+        <source-file src="src/ios/PrinterPlugin.m" />
+		<source-file src="src/ios/lib/libBXSDK.a" framework="true" />
+		
+		<framework src="ExternalAccessory.framework" />
+		<framework src="QuartzCore.framework" />
+		<framework src="ImageIO.framework" />
+    </platform>
+
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            
+            <feature name="PrinterPlugin" >
+                <param name="android-package" value="com.tsu.PrinterPlugin.PrinterPlugin"/>
+            </feature>
+        </config-file>
+        
+        <source-file src="src/android/PrinterPlugin.java" 
+            target-dir="src/com/tsu/PrinterPlugin" />
+        <source-file src="src/android/BixolonPrinter.jar"
+            target-dir="libs" />
+
+    </platform>
+</plugin>
